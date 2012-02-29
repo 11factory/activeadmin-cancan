@@ -14,8 +14,10 @@ class ActiveadminCancanTest < ActiveSupport::TestCase
   
   test "display menu only if user can manage given resource" do
     resource = ActiveAdmin.register(Foo)
-    # ActiveAdmin::ResourceDSL.any_instance.expects(:can?).with(:manage, Foo).returns(false)
-    puts resource.namespace.menu.items.first.display_if_block.call
+    ActiveAdmin::ResourceDSL.any_instance.expects(:can?).with(:manage, Foo).returns(false)
+    assert !resource.namespace.menu.items.first.display_if_block.call
+    ActiveAdmin::ResourceDSL.any_instance.expects(:can?).with(:manage, Foo).returns(true)
+    assert resource.namespace.menu.items.first.display_if_block.call
   end
   
 end
