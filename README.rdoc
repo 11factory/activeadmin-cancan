@@ -1,3 +1,45 @@
-= ActiveadminCancan
+= ActiveAdmin-Cancan
 
-This project rocks and uses MIT-LICENSE.
+ActiveAdmin-Cancan provides a smooth integration of the two gems ActiveAdmin[https://github.com/gregbell/active_admin] and Cancan[https://raw.github.com/ryanb/cancan].
+
+{<img src="https://secure.travis-ci.org/11factory/activeadmin-cancan.png" />}[http://travis-ci.org/11factory/activeadmin-cancan]
+
+== Getting Started
+
+Active Admin - Cancan is released as a Ruby Gem. The gem is to be installed within a Ruby
+on Rails 3 application. To install, simply add the following to your Gemfile:
+
+  gem 'activeadmin-cancan'
+
+== Configure CanCan
+
+You just have two things todo
+
+=== 1. Create the CanCan ability class
+
+User permissions are defined in an +Ability+ class. CanCan includes a Rails 3 generator for creating this class.
+
+  rails g cancan:ability
+
+See CanCan page [https://github.com/ryanb/cancan/wiki/defining-abilities] for details.
+
+=== 2. Handle Unauthorized Access
+
+If the user authorization fails, a <tt>CanCan::AccessDenied</tt> exception will be raised. You can catch this and modify its behavior in the +ApplicationController+.
+
+  class ApplicationController < ActionController::Base
+    rescue_from CanCan::AccessDenied do |exception|
+      redirect_to root_url, :alert => exception.message
+    end
+  end
+
+See CanCan page [https://github.com/ryanb/cancan/wiki/exception-handling] for more information.
+
+=== How it works
+
+I have just made the integration between the two gems, the two steps above are the only ones todo to get roles working with ActiveAdmin.
+
+
+== Copyright
+
+Copyright (c) 2012 Laurent Cobos, 11Factory. See LICENSE for details.
