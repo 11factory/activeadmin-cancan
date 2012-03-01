@@ -18,4 +18,6 @@ Gem::Specification.new do |s|
   s.add_dependency "rails", ">= 3.0"
   s.add_dependency "cancan", ">= 1.6.2"
   s.add_dependency "activeadmin", ">= 0.4.0"
+  
+  s.add_development_dependency "sqlite3"
 end
