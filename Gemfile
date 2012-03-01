@@ -23,4 +23,6 @@ group :test do
   gem "mocha"
   gem "meta_search"
   gem "sass-rails"
+  gem "sqlite3"
+  gem "rack"
 end
