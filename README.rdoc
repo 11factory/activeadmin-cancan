@@ -31,6 +31,10 @@ If the user authorization fails, a <tt>CanCan::AccessDenied</tt> exception will 
     rescue_from CanCan::AccessDenied do |exception|
       redirect_to root_url, :alert => exception.message
     end
+    
+    def current_ability
+      @current_ability ||= Ability.new(current_admin_user)
+    end
   end
 
 See CanCan page [https://github.com/ryanb/cancan/wiki/exception-handling] for more information.
