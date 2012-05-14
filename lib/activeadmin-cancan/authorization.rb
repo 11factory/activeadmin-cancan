@@ -8,7 +8,7 @@ ActiveAdmin::Namespace.class_eval do
     register_resource_controller(config)
     resource_dsl.prepare_menu(config)
     config = old_register(resource_class, options, &block)
-    config.controller.authorize_resource
+    config.controller.load_and_authorize_resource
     config    
   end
 end
@@ -20,5 +20,13 @@ ActiveAdmin::DSL.class_eval do
     instance_eval do
       menu :if => proc{ can?(:manage, resource) }
     end
+  end
+end
+
+CanCan::ControllerResource.class_eval do
+  def collection_instance=(instance)
+  end
+  
+  def resource_instance=(instance)
   end
 end
