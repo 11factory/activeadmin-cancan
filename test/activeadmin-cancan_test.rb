@@ -7,7 +7,7 @@ class ActiveadminCancanTest < ActiveSupport::TestCase
   
   test "authorize resource with cancan on register" do
     controller = ActiveAdmin.register(Foo).controller
-    controller.expects(:authorize_resource)
+    controller.expects(:load_and_authorize_resource)
     ActiveAdmin::Resource.any_instance.stubs(:controller).returns(controller)
     ActiveAdmin.register Foo
   end

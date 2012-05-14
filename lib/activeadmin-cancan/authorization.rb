@@ -1,4 +1,5 @@
 require 'activeadmin'
+require 'cancan'
  
 ActiveAdmin::Namespace.class_eval do
   alias_method :old_register, :register
