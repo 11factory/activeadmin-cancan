@@ -16,7 +16,7 @@ ActiveAdmin::Namespace.class_eval do
     end
 
     config = old_register(resource_class, options, &block)
-    config.controller.load_and_authorize_resource
+    config.controller.load_and_authorize_resource :class => resource_class
     config
   end
 end
