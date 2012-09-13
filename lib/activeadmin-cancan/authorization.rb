@@ -33,7 +33,7 @@ ActiveAdmin::DSL.class_eval do
   def prepare_menu5
     resource = controller.resource_class
     instance_eval do
-      menu :if => proc{ can?(:manage, resource) }
+      menu :if => proc{ can?(:index, resource) }
     end
   end
 end
