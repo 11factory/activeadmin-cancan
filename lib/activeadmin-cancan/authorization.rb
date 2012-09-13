@@ -16,7 +16,10 @@ ActiveAdmin::Namespace.class_eval do
     end
 
     config = old_register(resource_class, options, &block)
-    config.controller.load_and_authorize_resource :class => resource_class
+    config.controller.load_and_authorize_resource(
+      :class => resource_class,
+      :instance_name => 'cancan_resource' # don't interfere with ActiveAdmin resource
+    )
     config
   end
 end
@@ -89,10 +92,3 @@ ActiveAdmin::Resource::ActionItems.module_eval do
     end
 end
 
-CanCan::ControllerResource.class_eval do
-  def collection_instance=(instance)
-  end
-
-  def resource_instance=(instance)
-  end
-end
